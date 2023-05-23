@@ -8,14 +8,16 @@ namespace OOPBank.Tests
     [TestClass]
     public class Program_Tests
     {
+        // DEPOSIT TESTS (CC: 1)
+
         [TestMethod]
-        public void TestDepositSuccess() // CC of 1 but lots of traffic
+        public void TestDepositSuccess()
         {
             Customer c = new Customer(2000, 3000, "Jimothy");
             decimal deposit = 499M;
-            decimal expected = 2499M;
-            decimal result = c._checkingBalance + deposit;
-            Assert.AreEqual(expected, result);
+            decimal balance = 2000;
+            c.Deposit(deposit);
+            Assert.AreEqual(balance + deposit, c._checkingBalance);
         }
 
         [TestMethod]
@@ -27,20 +29,40 @@ namespace OOPBank.Tests
             c.Deposit(deposit);
         }
 
+        // WITHDRAW TESTS (CC: 4)
+
         [TestMethod]
-        public void TestWithdrawLessThanChecking() // CC of 4
+        public void TestWithdrawLessThanChecking()
         {
             Customer c = new Customer(2000, 3000, "Jimothy");
             decimal withdrawal = 100;
+            decimal balance = 2000;
             c.Withdraw(withdrawal);
+            Assert.AreEqual(balance - withdrawal, c._checkingBalance);
         }
 
         [TestMethod]
-        public void TestWithdrawGreaterThanChecking()
+        public void TestWithdrawCheckingEmpty()
         {
             Customer c = new Customer(2000, 3000, "Jimothy");
             decimal withdrawal = 2500;
             c.Withdraw(withdrawal);
+            Assert.AreEqual(0, c._checkingBalance);
+        }
+
+        [TestMethod]
+        public void TestWithdrawIntoSavings()
+        {
+            Customer c = new Customer(2000, 3000, "Jimothy");
+            decimal withdrawal = 2500;
+            c.Withdraw(withdrawal);
+            Assert.AreEqual(2500, c._savingsBalance);
+        }
+
+        [TestMethod]
+        public void TestWithdrawRemainderTen()
+        {
+
         }
 
         [TestMethod]
