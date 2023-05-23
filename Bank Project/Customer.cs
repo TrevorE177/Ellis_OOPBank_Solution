@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Bank_Project
 {
-    internal class Customer : IAccount
+    public class Customer : IAccount
     {
         // should be private variables
         public decimal _checkingBalance;
@@ -34,9 +34,10 @@ namespace Bank_Project
             {
                 _checkingBalance += amount;
             }
-            else
+            else if (amount <= 0)
             {
-                Console.WriteLine(errorDMessage);  // should be an error exception, not just a message
+                throw new Exception("Wrong number input");
+                //Console.WriteLine(errorDMessage);  // should be an error exception, not just a message
             }
         }
 
@@ -51,6 +52,10 @@ namespace Bank_Project
                 remainder = amount - _checkingBalance;
                 _checkingBalance = 0;
                 _savingsBalance -= remainder;
+            }
+            else if (amount > (_checkingBalance + _savingsBalance - 10))
+            {
+                throw new Exception("Balance is too low");
             }
         }
     } 
