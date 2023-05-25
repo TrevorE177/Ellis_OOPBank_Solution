@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Bank_Project
 {
-    internal class Checking : IAccount
+    public class Checking : IAccount
     {
         private static decimal _balance = 2000.00M;
 
@@ -25,6 +25,7 @@ namespace Bank_Project
             return Balance;
         }
 
+        // not sure what to do with these
         public void Deposit(decimal amount)
         {
             throw new NotImplementedException();

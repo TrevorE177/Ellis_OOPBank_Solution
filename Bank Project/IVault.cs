@@ -9,5 +9,7 @@ namespace Bank_Project
     internal interface IVault
     {
         decimal bankMoney { get; set; }
+        void Deposit(decimal amount);
+        void Withdraw(decimal amount);
     }
 }

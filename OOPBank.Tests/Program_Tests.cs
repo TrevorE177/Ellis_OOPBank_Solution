@@ -1,7 +1,10 @@
 using Bank_Project;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.ComponentModel;
 using System.Data;
+
+// Missing 1 converage in Customer deposit and withdraw tests CANNOT figure out what to do to cover them... :(
 
 namespace OOPBank.Tests
 {
@@ -60,18 +63,72 @@ namespace OOPBank.Tests
         }
 
         [TestMethod]
-        public void TestWithdrawRemainderTen()
-        {
-
-        }
-
-        [TestMethod]
         [ExpectedException(typeof(Exception), "Balance is too low")]
         public void TestWithdrawFail()
         {
             Customer c = new Customer(2000, 3000, "Jimothy");
             decimal withdrawal = 10000;
             c.Withdraw(withdrawal);
+        }
+
+        // VAULT METHODS 
+
+        [TestMethod]
+        public void TestVaultDeposit() // (CC: 2)
+        {
+            Vault v = new Vault(1000000);
+            decimal deposit = 499;
+            decimal vaultBalance = 1000000;
+            v.Deposit(deposit);
+            Assert.AreEqual(vaultBalance + deposit, v.bankMoney);
+        }
+
+        [TestMethod]
+        public void TestVaultWithdrawal() // (CC: 2)
+        {
+            Vault v = new Vault(1000000);
+            decimal withdrawal = 499;
+            decimal vaultBalance = 1000000;
+            v.Withdraw(withdrawal);
+            Assert.AreEqual(vaultBalance - withdrawal, v.bankMoney);
+        }
+
+        // SAVINGS (CC: 13)
+
+        [TestMethod]
+        public void TestSavingsBalance()
+        {
+            Savings s = new Savings();
+            decimal _savingsBalance = 3000M;
+            Assert.AreEqual(_savingsBalance, s.Balance);
+        }
+
+        [TestMethod]
+        public void TestGetBalanceSavings()
+        {
+            Savings s = new Savings();
+            decimal _savingsBalance = 3000M;
+            s.getBalance();
+            Assert.AreEqual(_savingsBalance, s.Balance);
+        }
+
+        // CHECKING (CC: 13)
+
+        [TestMethod]
+        public void TestCheckingBalance()
+        {
+            Checking c = new Checking();
+            decimal _checkingBalance = 2000M;
+            Assert.AreEqual(_checkingBalance, c.Balance);
+        }
+
+        [TestMethod]
+        public void TestGetBalanceChecking()
+        {
+            Checking c = new Checking();
+            decimal _checkingBalance = 2000M;
+            c.getBalance();
+            Assert.AreEqual(_checkingBalance, c.Balance);
         }
     }
 }

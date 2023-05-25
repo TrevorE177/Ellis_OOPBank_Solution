@@ -4,11 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+// I guess this is more like a customer "doing" transactions separate from a bank teller otherwise transactions should probably be in the vault class.  But they're essentially the same whether they're here or there.
+
 namespace Bank_Project
 {
     public class Customer : IAccount
     {
-        // should be private variables
+        // Variables should be private
         public decimal _checkingBalance;
         public decimal _savingsBalance;
         public string _memberName;
@@ -27,8 +29,8 @@ namespace Bank_Project
 
             _memberName = memberName;
         }
-
-        public void Deposit(decimal amount)
+                
+        public void Deposit(decimal amount) // Is this technically duplicating money if I also always withdraw from both places?
         {
             if (amount > 0)
             {
@@ -36,8 +38,8 @@ namespace Bank_Project
             }
             else if (amount <= 0)
             {
+                Console.WriteLine(errorDMessage);
                 throw new Exception("Wrong number input");
-                //Console.WriteLine(errorDMessage);  // should be an error exception, not just a message
             }
         }
 

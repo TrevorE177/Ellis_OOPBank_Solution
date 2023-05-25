@@ -8,6 +8,7 @@ namespace Bank_Project
         static void Main(string[] args)
         {
             Customer c = new Customer(2000M, 3000M, "Jimothy Halpert");
+            Vault v = new Vault(1000000M);
             bool isRunning = true;
             string option;
 
@@ -32,6 +33,7 @@ namespace Bank_Project
                         decimal deposit = decimal.Parse(Console.ReadLine());
                         Console.WriteLine("Depositing: " + String.Format("{0:C2}", deposit));
                         c.Deposit(deposit);
+                        v.Deposit(deposit);
                         Console.WriteLine("Your new balances are: ");
                         Console.WriteLine("Checking: " + String.Format("{0:C2}", c._checkingBalance));
                         Console.WriteLine("Savings: " + String.Format("{0:C2}", c._savingsBalance));
@@ -44,13 +46,14 @@ namespace Bank_Project
                         if (withdrawal <= (c._checkingBalance + c._savingsBalance) - 10)
                         {
                             c.Withdraw(withdrawal);
+                            v.Withdraw(withdrawal);
                             Console.WriteLine("Your new balances are: ");
                             Console.WriteLine("Checking: " + String.Format("{0:C2}", c._checkingBalance));
                             Console.WriteLine("Savings: " + String.Format("{0:C2}", c._savingsBalance));
                         }
                         else if (withdrawal > (c._checkingBalance + c._savingsBalance - 10))
                         {
-                            Console.WriteLine(c.errorWMessage);  // use exception instead which can be used in test
+                            Console.WriteLine(c.errorWMessage);
                         }
                         break;
 
