@@ -54,7 +54,7 @@ namespace OOPBank.Tests
         }
 
         [TestMethod]
-        public void TestWithdrawIntoSavings()
+        public void TestWithdrawIntoSavings() // Haven't been able to figure out how to test for both criteria in the if statement.  My 1 line not covered is "partially" covered.
         {
             Customer c = new Customer(2000, 3000, "Jimothy");
             decimal withdrawal = 2500;

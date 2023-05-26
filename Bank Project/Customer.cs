@@ -47,19 +47,26 @@ namespace Bank_Project
 
         public void Withdraw(decimal amount)
         {
-            if (amount <= _checkingBalance)
-            {
-                _checkingBalance -= amount;
+            if (amount > 0)
+            { 
+                if (amount <= _checkingBalance)
+                {
+                    _checkingBalance -= amount;
+                }
+                else if (amount > _checkingBalance && amount <= (_checkingBalance + _savingsBalance - 10))
+                {
+                    remainder = amount - _checkingBalance;
+                    _checkingBalance = 0;
+                    _savingsBalance -= remainder;
+                }
+                else if (amount > (_checkingBalance + _savingsBalance - 10))
+                {
+                    throw new Exception("Balance is too low");
+                }
             }
-            else if (amount > _checkingBalance && amount <= (_checkingBalance + _savingsBalance - 10))
+            else
             {
-                remainder = amount - _checkingBalance;
-                _checkingBalance = 0;
-                _savingsBalance -= remainder;
-            }
-            else if (amount > (_checkingBalance + _savingsBalance - 10))
-            {
-                throw new Exception("Balance is too low");
+                throw new Exception("Please enter a number greater than zero");
             }
         }
     } 
