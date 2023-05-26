@@ -130,5 +130,15 @@ namespace OOPBank.Tests
             c.getBalance();
             Assert.AreEqual(_checkingBalance, c.Balance);
         }
+
+        // CUSTOMER GETBALANCE (CC: 1)
+
+        [TestMethod]
+        public void TestGetBalance()
+        {
+            Customer c = new Customer(2000, 3000, "Jimothy");
+            decimal cTotal = 5000;
+            Assert.AreEqual(cTotal, c.Balance);
+        }
     }
 }

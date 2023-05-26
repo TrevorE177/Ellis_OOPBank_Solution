@@ -28,6 +28,8 @@ namespace Bank_Project
             _savingsBalance= sBalance;
 
             _memberName = memberName;
+
+            Balance = cBalance + sBalance;
         }
                 
         public void Deposit(decimal amount) // Is this technically duplicating money if I also always withdraw from both places?

@@ -25,7 +25,7 @@ namespace Bank_Project
             return Balance;
         }
 
-        // not sure what to do with these
+        // not sure what to do with these, doesn't make sense to test
         public void Deposit(decimal amount)
         {
             throw new NotImplementedException();
