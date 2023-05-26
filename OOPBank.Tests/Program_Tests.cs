@@ -69,6 +69,7 @@ namespace OOPBank.Tests
             Customer c = new Customer(2000, 3000, "Jimothy");
             decimal withdrawal = 10000;
             c.Withdraw(withdrawal);
+            Assert.AreEqual(10000, c._checkingBalance);
         }
 
         // VAULT METHODS 
